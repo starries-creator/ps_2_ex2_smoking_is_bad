@@ -1,128 +1,62 @@
-# PS2 Exercise 2 — collaboration setup
+# PS 2 Exercise 2 · Smoking is bad
 
-<!-- PS2_FINAL_TEAM_PLAN_START -->
-## PS2 最终分工与前置顺序
+This exercise reproduces the crude association between smoking and recorded
+survival in the supplied sample. It then uses visualizations, age stratification,
+and sensitivity analysis to examine how age composition affects that comparison.
+Start with the [main notebook](smoking_is_bad.ipynb) for the full exercise.
 
-本组完成第1、2、3、5题，A-E为成员占位。第1、5题沿用PS1的Conda；第2、3题使用Pixi。每人按表完成自己的分析、工程或报告部分；第2、3、5题在PR阶段统一审核和整合，不预先指定人员。最终验收均不指定人员。
+[Course instructions](https://jewel-scowl-daa.notion.site/Ex-2-Smoking-is-bad-7f8a2a09d1068262b9510109161b64e1)
 
-### 仓库与环境
+## Install and run
 
-| 题目 | 小组仓库 | 环境安排 |
-| --- | --- | --- |
-| 第1题 | [first_repo](https://github.com/zcyMary/first_repo) | 沿用PS1的Conda，补充检查工具 |
-| 第2题 | [Smoking](https://github.com/starries-creator/ps_2_ex2_smoking_is_bad) | Pixi，环境名 smoke；B先配置并验证，A-E各自安装/确认 |
-| 第3题 | [NBA](https://github.com/starries-creator/ps_2_ex3_database) | 老师的Pixi，Python 3.12，nba；C先验证，A-E各自安装/确认 |
-| 第5题 | [Titanic](https://github.com/starries-creator/ps1_ex4_nb_to_repo_forked) | 沿用Conda，Python 3.13.16、pandas 2.3；A-E各自激活/确认 |
-
-### 成员分工
-
-| 成员 | 第1题 | 第2题 | 第3题 | 第5题 |
-| --- | --- | --- | --- | --- |
-| A | 工具配置、全文件检查、跟进工具PR；审查忽略及类型PR | 变量分布图与解释 | 洞见①；数据库结构小题 | 筛选最终图表，撰写≤500词报告正文 |
-| B | 忽略规则、CSV验证、跟进忽略PR；审查工具PR | 优先完成Pixi smoke环境、锁文件、nbstripout及环境README | 洞见②；表清单小题 | 年龄/票价分析；完善README内容并保留原项目介绍 |
-| C | data_cleaner.py类型标注；协调类型PR | 年龄分组敏感性分析 | 先验证老师的nba环境、准备数据入口；打包、loader说明及安装/导入验证 | 家庭变量分析 |
-| D | data_loader.py、visualizer.py类型标注；审查忽略及工具PR | 数据准备、基础统计与总体生存率（基础TODO） | 洞见③；字段小题 | 性别/舱位分析 |
-| E | 验证mypy依赖、完成两问说明；审查类型PR | 按年龄分组比较吸烟与生存率，解释混杂关系 | 洞见④；日期范围小题 | 缺失值与特征可用性分析 |
-
-### 工作边界
-
-- NBA四个洞见选择相近复杂度；A/B/D/E各自交付SQL、分析/绘图函数、图和解释。C负责数据入口、打包及安装/导入验证。
-- 第5题优先复用已有分析和图；B/C/D/E各交图及简短解释，供A筛选和写作。报告正文≤500词，不含图；B完善README并保留原项目说明及备份。
-- 每人负责自己部分的代码、图和解释，并自行修正。第2、3、5题提交PR后统一审核、整合和完整复跑，不预先指定审核或整合人员。
-- 环境需各自在本机安装/激活并确认可用：第2题B先配置验证，第3题C先验证教师配置，第5题沿用各自原Conda。开工前划清函数、文件及notebook修改范围；PR合并后删除对应已合并的远程和本地分支，未合并分支保留。
-
-### 前置顺序
-
-箭头表示先后；【并行】内的工作可同时开展。各题最后的“最终验收”不指定人员。以下为组员后续完成作业的流程。
-
-#### 第1题：沿用Conda，三个主要PR，工具PR最后
-
-**【并行：A工具配置｜B忽略规则｜C/D类型标注｜E依赖验证、两问初稿】→【并行：B忽略PR，由A/D审查、B跟进合并｜C/D类型PR，由A/E审查、C跟进合并】→ A同步两项结果并做全文件检查，B/C/D修复所属部分，E补全两问并交A收录 → A提交工具PR，B/D审查，A跟进合并 → 最终验收**
-
-每条PR均需两名非作者批准。C标注data_cleaner.py；D标注data_loader.py和visualizer.py。E结合B的CSV结果与依赖验证完成两问，随A的工具PR提交。A/B/C分别负责工具/忽略/类型PR的合并跟进和已合并来源分支清理；按仓库权限执行。各人在合并后同步并安装hooks。
-
-#### 第2题：B准备环境，各自完成分析
-
-**B配置并验证Pixi smoke环境，A-E各自安装并确认可用 →【各自完成：A变量分布图与解释｜B锁文件、nbstripout及环境README｜C年龄分组敏感性｜D数据准备、基础统计与总体生存率｜E按年龄分组比较吸烟与生存率】 → A-E分别提交各自PR → 审核、整合并完整复跑 → 合并PR并删除已合并的远程和本地分支 → 最终验收**
-
-D先共享准备好的数据，A/C/E再基于同一数据分析；可并行的部分同时开展。C/E先约定基础年龄分组和生存率口径。各成员在自己的clone安装hook；B负责环境配置和使用说明，每个人确认自己的本机环境。
-
-#### 第3题NBA：C验证环境与数据，各自完成小题和洞见
-
-**C先验证老师的Pixi nba配置，A-E各自安装并确认环境 →【各自完成：A洞见①、数据库结构小题｜B洞见②、表清单小题｜C数据入口、打包、loader说明及安装/导入验证｜D洞见③、字段小题｜E洞见④、日期范围小题】 → A-E分别提交各自PR → 审核、整合并完整复跑 → 合并PR并删除已合并的远程和本地分支 → 最终验收**
-
-C先提供可复现的下载/建库步骤和数据库入口；A-E在本机确认数据可读后即可开展各自部分，无须等待整份warm-up或打包完成。C负责warm-up路径/连接，四位洞见作者的其余小题见流程；最终整合前完成安装/导入验证。
-
-#### 第5题：各自确认Conda，分析后完成报告
-
-**A-E各自激活并确认原Conda环境（缺少时安装） →【各自完成：A筛图、撰写≤500词报告｜B年龄/票价分析、完善README｜C家庭变量分析｜D性别/舱位分析｜E缺失值与特征可用性分析】 → A-E分别提交各自PR → 审核、整合并完整复跑 → 合并PR并删除已合并的远程和本地分支 → 最终验收**
-
-优先复用已有图表，可并行的分析同时开展；B/C/D/E交齐图和简短解释后，A定稿选图与报告。B保留原项目介绍及docs/readme-history中的README备份；沿用Python 3.13.16、pandas 2.3，不另设新环境。
-
-### 作业占位
-
-作业占位文件和原notebook中的TODO留给对应成员完成；本次只同步分工和流程，不预填分析、答案或报告。
-<!-- PS2_FINAL_TEAM_PLAN_END -->
-
-## Start here: Pixi environment
-
-本题使用仓库根目录的 **Pixi `smoke` 环境**。先安装 [Pixi](https://pixi.sh/)，然后在仓库根目录运行：
+Install [Git](https://git-scm.com/install/) and [Pixi](https://pixi.sh/latest/installation/).
+Then clone the repository and run these commands from the repository root.
 
 ```bash
+git clone https://github.com/starries-creator/ps_2_ex2_smoking_is_bad.git
+cd ps_2_ex2_smoking_is_bad
 pixi install --locked -e smoke
 pixi run -e smoke jupyter
 ```
 
-Notebook 使用该环境的 Python kernel。依赖和平台锁定在 `pixi.lock` 中；当前配置支持 macOS Apple Silicon/Intel、Linux x86-64 和 Windows x86-64。首次设置提交钩子：
+Pixi installs the dependencies for the Python 3.12 `smoke` environment from
+[pixi.lock](pixi.lock). In JupyterLab, open `smoking_is_bad.ipynb`, choose the
+Python kernel from the `smoke` environment if prompted, and select **Run All**
+to regenerate the tables. The figures linked from the main notebook are included
+in the repository. Run the companion notebooks from the same directory.
+
+The locked installation, JupyterLab launch, and all four notebooks were
+verified on Apple Silicon macOS. The lock file also includes macOS Intel,
+Linux x86-64, and Windows x86-64.
+
+## Results and supporting files
+
+- **[Main notebook](smoking_is_bad.ipynb)** covers data preparation, the crude
+  comparison, and the combined analysis. In 1,314 records, the crude recorded
+  survival proportions were **68.6%** for non-smokers and **76.1%** for smokers.
+- **[Sample distributions](member_a_distributions.ipynb)** describes age,
+  observed salary, smoking status, outcome, and gender. See the
+  [numeric figure](figures/member_a_numeric_distributions.png) and
+  [categorical figure](figures/member_a_categorical_distributions.png).
+- **[Baseline age-stratified analysis](member_e_age_stratified_survival.ipynb)**
+  compares the two smoking groups within ages 18–29, 30–49, 50–64, and 65+.
+  The recorded survival proportion was lower for smokers in each baseline
+  band. See the [baseline figure](figures/member_e_age_stratified_survival.png).
+- **[Age-group sensitivity analysis](member_c_age_sensitivity.ipynb)** compares
+  the baseline with coarser and finer bands. The age-standardized difference
+  changes sign across the three schemes. See the
+  [sensitivity figure](figures/member_c_age_sensitivity.png).
+- **[Source data](data/smoking_data.csv)** contains the dataset supplied for the exercise.
+
+The observed differences depend on the age distribution and the chosen bands.
+The results describe the recorded outcomes in this sample.
+
+## Contributor setup
+
+Install the [notebook cleanup hook](.pre-commit-config.yaml) once per clone.
+It clears cell outputs before commits. Use the second command to check all files.
 
 ```bash
 pixi run -e smoke pre-commit install
-```
-
-nbstripout 会在提交时清除 notebook 输出。手动检查所有文件可运行 `pixi run -e smoke pre-commit run --all-files`。更新 `pixi.toml` 后，请运行 `pixi lock` 并提交更新后的 `pixi.lock`。
-
-## Files and unfinished coursework
-
-- `smoking_is_bad.ipynb`: original notebook and TODOs, unchanged.
-- `data/smoking_data.csv`: original supplied data, retained.
-- `pixi.toml` + `pixi.lock`: reproducible root `smoke` environment.
-- `.pre-commit-config.yaml`: nbstripout notebook output cleanup hook.
-- `environment/pixi.toml` + `environment/pixi.lock`: earlier bootstrap environment kept as a reference.
-- `figures/`: final figure exports, tracked by Git.
-- `docs/findings.md`: intentionally EMPTY optional working notes; final analysis belongs in the notebook.
-
-The root Pixi environment and nbstripout hook are ready to use with the commands above.
-
-
-## Setup verification
-
-Verified on 2026-11-05 with Pixi on macOS: lock generation and `pixi install --locked -e smoke` completed successfully. Other platforms are lock-resolved and have not been runtime-tested.
-
-## Original repository instructions (retained)
-
-# PS 2, ex 2 Smoking is bad
-
-# Setup
-
-Install the required packages with Pixi from the repository root:
-
-```bash
-pixi install
-pixi shell
-```
-
-## Pre-commit
-
-This repository uses pre-commit to remove Jupyter notebook outputs before commits. Install the hook once per local clone:
-
-To install pre-commit, run:
-
-```bash
-pixi run -e smoke pre-commit install
-```
-
-To run the checks manually, run:
-
-```bash
 pixi run -e smoke pre-commit run --all-files
 ```
